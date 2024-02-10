@@ -1,0 +1,697 @@
+{
+	"info": {
+		"_postman_id": "b86f2d8c-1242-4f6a-bdfb-ba21d9efb852",
+		"name": "Job-App",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "31144808"
+	},
+	"item": [
+		{
+			"name": "auth",
+			"item": [
+				{
+					"name": "signUp",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstName\":\"Moamen\",\r\n    \"lastName\":\"sherif\",\r\n    \"email\": \"f10@gmail.com\",\r\n    \"recoveryEmail\":\"recovery@gmail.com\",\r\n    \"password\": \"Mazen@123\",\r\n    \"confirmPassword\":\"Mazen@123\",\r\n     \"DOB\": \"9/29/2003\",\r\n    \"mobileNumber\": \"01010007884\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/auth/signup",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"auth",
+								"signup"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "sign in",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"f6@gmail.com\",\r\n    \"mobileNumber\":\"01040007883\",\r\n    \"password\": \"Mazen@123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/auth/signin",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"auth",
+								"signin"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "changePassword",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": ""
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "user",
+			"item": [
+				{
+					"name": "updateAccount",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1Yzc0ZmI3YzNlNWU4NDBiNjk1MDNiMCIsImVtYWlsIjoiZjRAZ21haWwuY29tIiwibW9iaWxlTnVtYmVyIjoiMDEwNDAwMDc4ODQiLCJpYXQiOjE3MDc1NjE1Mzl9.MSgOsV1C_iST2LXWCxryPTLGwZhcA8VbgcohX5hCNLs",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstName\":\"waaled\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/users/updateAccount",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"users",
+								"updateAccount"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteAccount",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1YzQ5NzIxODU2OTllZTQ2ZGRlYjU3ZCIsImVtYWlsIjoib2JqMUBnbWFpbC5jb20iLCJtb2JpbGVOdW1iZXIiOiIwMTAxMDAwNzg4MyIsImlhdCI6MTcwNzU0OTg3OH0.UFzT4TYlWjcaU1xzufUp880gJAUfm4mGpqPrHPaIoWU",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/users/deleteAccount",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"users",
+								"deleteAccount"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getUser Account Data",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1Yzc0ZmI3YzNlNWU4NDBiNjk1MDNiMCIsImVtYWlsIjoiZjRAZ21haWwuY29tIiwibW9iaWxlTnVtYmVyIjoiMDEwNDAwMDc4ODQiLCJpYXQiOjE3MDc1NjE1Mzl9.MSgOsV1C_iST2LXWCxryPTLGwZhcA8VbgcohX5hCNLs",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/users",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getProfileDataForAnotherUser",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1Yzc0ZmI3YzNlNWU4NDBiNjk1MDNiMCIsImVtYWlsIjoiZjRAZ21haWwuY29tIiwibW9iaWxlTnVtYmVyIjoiMDEwNDAwMDc4ODQiLCJpYXQiOjE3MDc1NjE1Mzl9.MSgOsV1C_iST2LXWCxryPTLGwZhcA8VbgcohX5hCNLs",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/users/65c74fc0c3e5e840b69503b4",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"users",
+								"65c74fc0c3e5e840b69503b4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "forget password",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1YzY4MzU0NmE4OTQyOTk2ODM2OTQzOCIsImVtYWlsIjoib2JmajVyQGdtYWlsLmNvbSIsIm1vYmlsZU51bWJlciI6IjAxMDIwMDA3ODgzIiwiaWF0IjoxNzA3NTExMTUyfQ.LmCBCIAdZ2GKoXmmMOhKL4pAZca08cXft4rx1b7slHo",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n     \"email\": \"f10@gmail.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/users/forgetPassword",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"users",
+								"forgetPassword"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "OTP change password",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"email\":\"obfj5r@gmail.com\",\r\n   \"newPassword\":\"Mazen@111\",\r\n   \"confirmPassword\":\"Mazen@111\",\r\n   \"otp\": 847297\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/users/enterOtp",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"users",
+								"enterOtp"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getAccountsForRecoveryEmail",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": ""
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "company",
+			"item": [
+				{
+					"name": "add company",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1Yzc0ZmI3YzNlNWU4NDBiNjk1MDNiMCIsImVtYWlsIjoiZjRAZ21haWwuY29tIiwibW9iaWxlTnVtYmVyIjoiMDEwNDAwMDc4ODQiLCJpYXQiOjE3MDc1NjE1Mzl9.MSgOsV1C_iST2LXWCxryPTLGwZhcA8VbgcohX5hCNLs",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"companyName\": \"addidas\",  \r\n   \"description\": \"best ever\",\r\n    \"industry\":\"nivce\",\r\n    \"address\": \"helwan\",\r\n    \"numberOfEmployees\": 12,\r\n    \"companyEmail\": \"comany1@hmail.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/company",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"company"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "search company",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1Yzc0ZmI3YzNlNWU4NDBiNjk1MDNiMCIsImVtYWlsIjoiZjRAZ21haWwuY29tIiwibW9iaWxlTnVtYmVyIjoiMDEwNDAwMDc4ODQiLCJpYXQiOjE3MDc1NjE1Mzl9.MSgOsV1C_iST2LXWCxryPTLGwZhcA8VbgcohX5hCNLs",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/company/search/A",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"company",
+								"search",
+								"A"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getCompanyData",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1Yzc0ZmI3YzNlNWU4NDBiNjk1MDNiMCIsImVtYWlsIjoiZjRAZ21haWwuY29tIiwibW9iaWxlTnVtYmVyIjoiMDEwNDAwMDc4ODQiLCJpYXQiOjE3MDc1NjE1Mzl9.MSgOsV1C_iST2LXWCxryPTLGwZhcA8VbgcohX5hCNLs",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/company/65c754238451033977b49f05/jobs",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"company",
+								"65c754238451033977b49f05",
+								"jobs"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateCompany",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1Yzc0ZmI3YzNlNWU4NDBiNjk1MDNiMCIsImVtYWlsIjoiZjRAZ21haWwuY29tIiwibW9iaWxlTnVtYmVyIjoiMDEwNDAwMDc4ODQiLCJpYXQiOjE3MDc1NjE1Mzl9.MSgOsV1C_iST2LXWCxryPTLGwZhcA8VbgcohX5hCNLs",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"companyName\": \"pull & bear\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/company/65c754238451033977b49f05",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"company",
+								"65c754238451033977b49f05"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete company",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1Yzc0ZmI3YzNlNWU4NDBiNjk1MDNiMCIsImVtYWlsIjoiZjRAZ21haWwuY29tIiwibW9iaWxlTnVtYmVyIjoiMDEwNDAwMDc4ODQiLCJpYXQiOjE3MDc1NjM5MjZ9.oIdEWqUNxklKJc-ifuOv3FXsr2Ac3jdhxJis6P567oI",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/company/65c754238451033977b49f05",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"company",
+								"65c754238451033977b49f05"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all applications for specific Jobs",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1Yzc0ZmI3YzNlNWU4NDBiNjk1MDNiMCIsImVtYWlsIjoiZjRAZ21haWwuY29tIiwibW9iaWxlTnVtYmVyIjoiMDEwNDAwMDc4ODQiLCJpYXQiOjE3MDc1NjM5MjZ9.oIdEWqUNxklKJc-ifuOv3FXsr2Ac3jdhxJis6P567oI",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/company/65c75e5eb0bd30c226cdd3d5/applications",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"company",
+								"65c75e5eb0bd30c226cdd3d5",
+								"applications"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "jobs",
+			"item": [
+				{
+					"name": "add job",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1Yzc0ZmI3YzNlNWU4NDBiNjk1MDNiMCIsImVtYWlsIjoiZjRAZ21haWwuY29tIiwibW9iaWxlTnVtYmVyIjoiMDEwNDAwMDc4ODQiLCJpYXQiOjE3MDc1NjE1Mzl9.MSgOsV1C_iST2LXWCxryPTLGwZhcA8VbgcohX5hCNLs",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"jobTitle\": \"Back-End\",\r\n    \"jobLocation\": \"onsite\",\r\n    \"workingTime\": \"part-time\",\r\n    \"seniorityLevel\": \"Junior\",\r\n    \"jobDescription\": \"ahh\",\r\n    \"technicalSkills\": [\"Vue\", \"React\", \"Angular\"],\r\n     \"softSkills\" :[\"Vue\", \"React\", \"Angular\"]\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/jobs",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"jobs"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateJob",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1Yzc0ZmI3YzNlNWU4NDBiNjk1MDNiMCIsImVtYWlsIjoiZjRAZ21haWwuY29tIiwibW9iaWxlTnVtYmVyIjoiMDEwNDAwMDc4ODQiLCJpYXQiOjE3MDc1NjE1Mzl9.MSgOsV1C_iST2LXWCxryPTLGwZhcA8VbgcohX5hCNLs",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"technicalSkills\": [\"Front-End\"]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/jobs/65c75e5eb0bd30c226cdd3d5",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"jobs",
+								"65c75e5eb0bd30c226cdd3d5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete job",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1Yzc0ZmMwYzNlNWU4NDBiNjk1MDNiNCIsImVtYWlsIjoiZjVAZ21haWwuY29tIiwibW9iaWxlTnVtYmVyIjoiMDEwNDAwMDc4ODUiLCJpYXQiOjE3MDc1NjQ3ODF9.DSlKMSSoFwwUny35z9IqQr_l0G03DpGt1EU1CEsnJ80",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/jobs/65c75e5eb0bd30c226cdd3d5",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"jobs",
+								"65c75e5eb0bd30c226cdd3d5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get all jobs",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1Yzc0ZmI3YzNlNWU4NDBiNjk1MDNiMCIsImVtYWlsIjoiZjRAZ21haWwuY29tIiwibW9iaWxlTnVtYmVyIjoiMDEwNDAwMDc4ODQiLCJpYXQiOjE3MDc1NjM5MjZ9.oIdEWqUNxklKJc-ifuOv3FXsr2Ac3jdhxJis6P567oI",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/jobs",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"jobs"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get jobs company",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1Yzc0ZmI3YzNlNWU4NDBiNjk1MDNiMCIsImVtYWlsIjoiZjRAZ21haWwuY29tIiwibW9iaWxlTnVtYmVyIjoiMDEwNDAwMDc4ODQiLCJpYXQiOjE3MDc1NjM5MjZ9.oIdEWqUNxklKJc-ifuOv3FXsr2Ac3jdhxJis6P567oI",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/jobs/company?name=addidas",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"jobs",
+								"company"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "addidas"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "filter jobs",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1Yzc0ZmI3YzNlNWU4NDBiNjk1MDNiMCIsImVtYWlsIjoiZjRAZ21haWwuY29tIiwibW9iaWxlTnVtYmVyIjoiMDEwNDAwMDc4ODQiLCJpYXQiOjE3MDc1NjM5MjZ9.oIdEWqUNxklKJc-ifuOv3FXsr2Ac3jdhxJis6P567oI",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/jobs/search/filters?workingTime=full-time",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"jobs",
+								"search",
+								"filters"
+							],
+							"query": [
+								{
+									"key": "workingTime",
+									"value": "full-time"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "apply to job",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1Yzc0ZmMwYzNlNWU4NDBiNjk1MDNiNCIsImVtYWlsIjoiZjVAZ21haWwuY29tIiwibW9iaWxlTnVtYmVyIjoiMDEwNDAwMDc4ODUiLCJpYXQiOjE3MDc1NjUxNTF9.ptlRoN8_Kb1sJvyA_GVrtmFxLg8cufg3hsqpfiqiDpw",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "userResume",
+									"type": "file",
+									"src": "/D:/Profile/CV/CV.pdf"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/jobs/apply/65c75e5eb0bd30c226cdd3d5",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"jobs",
+								"apply",
+								"65c75e5eb0bd30c226cdd3d5"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Bonus",
+			"item": [
+				{
+					"name": "create excel",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1YzUwNjFlNTU5ZWRlNTFkMDliZWUyOCIsImVtYWlsIjoib2JqOEBnbWFpbC5jb20iLCJtb2JpbGVOdW1iZXIiOiIwMTAxMDAwNzg4MSIsImlhdCI6MTcwNzU1MjgwMH0.PoVnEeu69v9eyD0ZWuv7Hb8ghHCiEBIoU4W9xQkv44E",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/bonus",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"bonus"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "url",
+			"value": "http://localhost:3001/api/v1",
+			"type": "string"
+		}
+	]
+}
