@@ -1,9 +1,10 @@
 {
 	"info": {
-		"_postman_id": "b86f2d8c-1242-4f6a-bdfb-ba21d9efb852",
+		"_postman_id": "dd5511e2-cf84-4927-ab14-f57942b390ca",
 		"name": "Job-App",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "31144808"
+		"_exporter_id": "31167202",
+		"_collection_link": "https://winter-firefly-764571.postman.co/workspace/My-Workspace~d5b6311b-3770-417b-85ef-666033e037c2/collection/31167202-dd5511e2-cf84-4927-ab14-f57942b390ca?action=share&source=collection_link&creator=31167202"
 	},
 	"item": [
 		{
@@ -220,10 +221,16 @@
 					"name": "OTP change password",
 					"request": {
 						"method": "POST",
-						"header": [],
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1YzdiNGM3YTlmYWMyYzZiMDQwOTk3NiIsImlhdCI6MTcwNzU4Njg1MywiZXhwIjoxNzA3NTg3NzUzfQ.P0wPQnD_8iZ7B5wA206ZVppDqKgQlr7Byplzsvi_huE",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n   \"email\":\"obfj5r@gmail.com\",\r\n   \"newPassword\":\"Mazen@111\",\r\n   \"confirmPassword\":\"Mazen@111\",\r\n   \"otp\": 847297\r\n}",
+							"raw": "{\r\n  \"newPassword\":\"Avrvr@8251\" ,\r\n  \"confirmPassword\":\"Avrvr@8251\" ,\r\n  \"otp\":\"941848\" \r\n    \r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
