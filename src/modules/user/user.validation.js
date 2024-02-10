@@ -21,7 +21,7 @@ const otpVal = joi.object({
   email: joi.string().email().required(),
   newPassword: joi.string().pattern(/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/).required(),
   confirmPassword: joi.valid(joi.ref("newPassword")).required(),
-  otp: joi.number().integer().options({ convert:false }).required(),
+  otp: joi.string().required(),
 })
 
 const forgetPasswordVal = joi.object({

@@ -26,18 +26,17 @@ protectedRoutes, validation(updateAccVal), conflictingUser, updateAccount)
 
 /*(4)-------- Delete account ---------------*/
 userRouter.delete('/deleteAccount', protectedRoutes, deleteAccount)
-
+/*(6)-------- Get profile data for another user  ---------------*/
+userRouter.get('/:id', validation(paramsIdVal), protectedRoutes, getProfileDataForAnotherUser)
 /*(8)-------- Forget password ---------------*/
 userRouter.post('/forgetPassword', validation(forgetPasswordVal), forgetPassword)
-
+/*(7)-------- enterOtp ---------------*/
+userRouter.post('/enterOtp', validation(otpVal), otp)
 /*(9)-------- Get all accounts associated to a specific recovery Email ---------------*/
 userRouter.get('/accounts/:recoveryEmail', validation(paramsEmailVal), getAccountsForRecoveryEmail)
 
-/*()-------- enterOtp ---------------*/
-userRouter.post('/enterOtp', validation(otpVal), otp)
 
-/*(6)-------- Get profile data for another user  ---------------*/
-userRouter.get('/:id', validation(paramsIdVal), protectedRoutes, getProfileDataForAnotherUser)
+
 
 
 

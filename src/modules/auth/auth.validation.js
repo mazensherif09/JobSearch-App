@@ -6,7 +6,7 @@ const signUpSchemaValidation = joi.object({
   email: joi.string().email().required(),
   password: joi.string().pattern(/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/).required(),
   confirmPassword: joi.valid(joi.ref("password")).required(),
-  recoveryEmail: joi.string().email().required(),
+  recoveryEmail: joi.string().email(),
   DOB: joi.date().required(),
   mobileNumber: joi.string().max(11).required(),
 });

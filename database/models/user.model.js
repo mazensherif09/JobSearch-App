@@ -10,10 +10,11 @@ const schema = new mongoose.Schema(
     email: { type: String, required: true, unique: true },
     password: { type: String, required: true },
     passwordChangedAt: Date,
-    recoveryEmail: { type: String, required: true },
+    recoveryEmail: { type: String},
     DOB: { type: Date, required: true },
     mobileNumber: { type: String, required: true, unique: true },
-    otp: Number,
+    isresetPassword: { type: Boolean, default: false },
+    otp: { type: String },
     role: {
       type: String,
       enum: Object.values(userRoles),
