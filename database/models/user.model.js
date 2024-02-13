@@ -14,6 +14,7 @@ const schema = new mongoose.Schema(
     DOB: { type: Date, required: true },
     mobileNumber: { type: String, required: true, unique: true },
     isresetPassword: { type: Boolean, default: false },
+    isblocked: { type: Boolean, default: false },
     otp: { type: String },
     role: {
       type: String,

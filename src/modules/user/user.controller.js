@@ -14,12 +14,10 @@ const getUserAccountData = AsyncHandler(async (req, res, next) => {
 
 const getProfileDataForAnotherUser = AsyncHandler(async (req, res, next) => {
   // Find the user document by ID
-  let user = await userModel
-    .findById(req.params.id)
-    .select("-password -_id -recoveryEmail");
+  let user = await userModel.findById(req.params.id).select("-password -_id -recoveryEmail");
+  
   !user && res.json({ message: "user not found" }); //case not found
-
-  user && res.json({ message: "success", profile: user });
+   user && res.json({ message: "success", profile: user });
 });
 
 const updateAccount = async (req, res, next) => {
@@ -46,7 +44,6 @@ const forgetPassword = AsyncHandler(async (req, res, next) => {
   if (!user) return res.json({ message: "Email is wronge" });
   // Generate a random OTP
   const otp = Math.floor(100000 + Math.random() * 900000);
-  console.log("🚀 ~ forgetPassword ~ otp:", otp);
   // Save the OTP and its expiration time in the user's session or database
   user.otp = otp;
   user.isresetPassword = true;
@@ -59,47 +56,45 @@ const forgetPassword = AsyncHandler(async (req, res, next) => {
     body: "Your OTP is " + otp,
   };
   const message = await client.messages.create(SMSOptions);
-  const session = {
-    Token: jwt.sign({ id: user._id }, process.env.JWT_KEY, {
-      expiresIn: "15m",
-    }),
-    expiresIn: new Date(new Date().getTime() + 15 * 60000).toLocaleString(),
-  };
-  return res.json({
-    message: "We sent OTB to " + user.mobileNumber,
-    session,
-  });
+  // create session token valid for 15 minutes ago
+  const session = {Token: jwt.sign({ id: user._id }, process.env.JWT_KEY, {expiresIn: "15m"}),
+  // to get the date spacific 
+  expiresIn: new Date(new Date().getTime() + 15 * 60000).toLocaleString()};
+  //we are safe here :)
+  return res.json({message: "We sent OTB to " + user.mobileNumber, session});
 });
 
 const otp = AsyncHandler(async (req, res, next) => {
-  // Find the user document by decoded email
-  jwt.verify(req.headers.token, process.env.JWT_KEY, async (err, decoded) => {
+   //get token data
+    jwt.verify(req.headers.token, process.env.JWT_KEY, async (err, decoded) => {
     if (err) return next(new AppError(err, 401));
+    // Find the user document by decoded
     const user = await userModel.findById(decoded.id);
     if (!user) return res.json({ message: "user not found" });
+    //check if the user is blocked
     if (user?.isblocked) return next(new AppError("user is blocked", 401));
+    //check if the reset password before and try again in same time
     if (!user.isresetPassword) return next(new AppError("session closed", 401));
-    if (
-      user.passwordChangedAt &&
-      decoded.iat * 1000 < new Date(user.passwordChangedAt).getTime()
-    ) {
-      return next(new AppError("token is invaild", 401));
-    }
-    if (user.otp !== req.body.otp) return res.json({ message: "Invalid OTP" });
-    (user.password = req.body.newPassword),
-      (user.passwordChangedAt = Date.now()),
-      (user.isresetPassword = false);
-    await user.save();
+    // validate token
+    if (user.passwordChangedAt && decoded.iat * 1000 < new Date(user.passwordChangedAt).getTime())
+     {return next(new AppError("token is invaild", 401))}
+    // check the otp is correct
+     if (user.otp !== req.body.otp) return res.json({ message: "Invalid OTP" });
+    // update the password and close the session 
+     (user.password = req.body.newPassword),
+     (user.passwordChangedAt = Date.now()),
+     (user.isresetPassword = false);
+     await user.save();
+     // we are safe here :)
     return res.json({ message: "success" });
   });
 });
 
 const getAccountsForRecoveryEmail = AsyncHandler(async (req, res, next) => {
-  const users = await userModel.find({
-    recoveryEmail: req.params.recoveryEmail,
-  });
+  //find all accounts with the same recovery email 
+  const users = await userModel.find({recoveryEmail: req.params.recoveryEmail});
+  
   !users && res.json({ message: "no one" });
-
   users && res.json({ message: "Success", users });
 });
 

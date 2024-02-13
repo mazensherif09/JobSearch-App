@@ -34,7 +34,7 @@ const signin = AsyncHandler(async (req, res, next) => {
 
 const changePassword = AsyncHandler(async (req, res, next) => {
   //1- if user and password are correct
-  if (req.user && bcrypt.compareSync(req.body.password, req.user.password)) {
+  if (req.user) {
     //2- sign token
     let token = jwt.sign(
       { id: req.user._id, email: req.user.email },
