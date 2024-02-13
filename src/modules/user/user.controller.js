@@ -6,18 +6,42 @@ import jwt from "jsonwebtoken";
 import { AppError } from "../../utils/AppError.js";
 
 const getUserAccountData = AsyncHandler(async (req, res, next) => {
-  const user = await userModel.findById(req.user._id).select("-password");
+  const user = await userModel.findById(req.user._id);
 
-  !user && res.json({ message: "user not found" }); //case not found
-  user && res.json({ message: "success", AccountData: user });
+  if (!user) return res.json({ message: "user not found" }); //case not found
+
+  return res.json({
+    message: "success",
+    user: {
+      userName: user.userName,
+      firstName: user.firstName,
+      lastName: user.lastName,
+      email: user.email,
+      mobileNumber: user.mobileNumber,
+      recoveryEmail:user.recoveryEmail,
+      DOB: user.DOB,
+    },
+  });
 });
 
 const getProfileDataForAnotherUser = AsyncHandler(async (req, res, next) => {
   // Find the user document by ID
-  let user = await userModel.findById(req.params.id).select("-password -_id -recoveryEmail");
-  
-  !user && res.json({ message: "user not found" }); //case not found
-   user && res.json({ message: "success", profile: user });
+  let user = await userModel
+    .findById(req.params.id)
+
+    if (!user) return res.json({ message: "user not found" }); //case not found
+
+    return res.json({
+      message: "success",
+      user: {
+        userName: user.userName,
+        firstName: user.firstName,
+        lastName: user.lastName,
+        email: user.email,
+        mobileNumber: user.mobileNumber,
+        DOB: user.DOB,
+      },
+    });
 });
 
 const updateAccount = async (req, res, next) => {
@@ -57,16 +81,20 @@ const forgetPassword = AsyncHandler(async (req, res, next) => {
   };
   const message = await client.messages.create(SMSOptions);
   // create session token valid for 15 minutes ago
-  const session = {Token: jwt.sign({ id: user._id }, process.env.JWT_KEY, {expiresIn: "15m"}),
-  // to get the date spacific 
-  expiresIn: new Date(new Date().getTime() + 15 * 60000).toLocaleString()};
+  const session = {
+    Token: jwt.sign({ id: user._id }, process.env.JWT_KEY, {
+      expiresIn: "15m",
+    }),
+    // to get the date spacific
+    expiresIn: new Date(new Date().getTime() + 15 * 60000).toLocaleString(),
+  };
   //we are safe here :)
-  return res.json({message: "We sent OTB to " + user.mobileNumber, session});
+  return res.json({ message: "We sent OTB to " + user.mobileNumber, session });
 });
 
 const otp = AsyncHandler(async (req, res, next) => {
-   //get token data
-    jwt.verify(req.headers.token, process.env.JWT_KEY, async (err, decoded) => {
+  //get token data
+  jwt.verify(req.headers.token, process.env.JWT_KEY, async (err, decoded) => {
     if (err) return next(new AppError(err, 401));
     // Find the user document by decoded
     const user = await userModel.findById(decoded.id);
@@ -76,24 +104,30 @@ const otp = AsyncHandler(async (req, res, next) => {
     //check if the reset password before and try again in same time
     if (!user.isresetPassword) return next(new AppError("session closed", 401));
     // validate token
-    if (user.passwordChangedAt && decoded.iat * 1000 < new Date(user.passwordChangedAt).getTime())
-     {return next(new AppError("token is invaild", 401))}
+    if (
+      user.passwordChangedAt &&
+      decoded.iat * 1000 < new Date(user.passwordChangedAt).getTime()
+    ) {
+      return next(new AppError("token is invaild", 401));
+    }
     // check the otp is correct
-     if (user.otp !== req.body.otp) return res.json({ message: "Invalid OTP" });
-    // update the password and close the session 
-     (user.password = req.body.newPassword),
-     (user.passwordChangedAt = Date.now()),
-     (user.isresetPassword = false);
-     await user.save();
-     // we are safe here :)
+    if (user.otp !== req.body.otp) return res.json({ message: "Invalid OTP" });
+    // update the password and close the session
+    (user.password = req.body.newPassword),
+      (user.passwordChangedAt = Date.now()),
+      (user.isresetPassword = false);
+    await user.save();
+    // we are safe here :)
     return res.json({ message: "success" });
   });
 });
 
 const getAccountsForRecoveryEmail = AsyncHandler(async (req, res, next) => {
-  //find all accounts with the same recovery email 
-  const users = await userModel.find({recoveryEmail: req.params.recoveryEmail});
-  
+  //find all accounts with the same recovery email
+  const users = await userModel.find({
+    recoveryEmail: req.params.recoveryEmail,
+  });
+
   !users && res.json({ message: "no one" });
   users && res.json({ message: "Success", users });
 });
