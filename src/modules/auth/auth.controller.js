@@ -15,8 +15,10 @@ const signUp = AsyncHandler(async (req, res, next) => {
 const signin = AsyncHandler(async (req, res, next) => {
   //1- Check if the user exists
   let user = await userModel.findOne({
-    $or: [{ email: req.body.email }, { mobileNumber: req.body.mobileNumber },
-     ],
+    $or: [
+      { email: req.body.email?.toLowerCase() },
+      { mobileNumber: req.body.mobileNumber },
+    ],
   });
   //2- if the user and his password are true
   if (user && bcrypt.compareSync(req.body.password, user.password)) {

@@ -7,10 +7,10 @@ const schema = new mongoose.Schema(
     firstName: { type: String, required: true },
     lastName: { type: String, required: true },
     userName: { type: String },
-    email: { type: String, required: true, unique: true },
+    email: { type: String, required: true, unique: true, lowercase: true },
     password: { type: String, required: true },
     passwordChangedAt: Date,
-    recoveryEmail: { type: String},
+    recoveryEmail: { type: String },
     DOB: { type: Date, required: true },
     mobileNumber: { type: String, required: true, unique: true },
     isresetPassword: { type: Boolean, default: false },
@@ -31,10 +31,11 @@ const schema = new mongoose.Schema(
 );
 
 schema.pre("save", function () {
-  this.userName = this.firstName + this.lastName;
   if (this.password) this.password = bcrypt.hashSync(this.password, 8);
 });
-
+schema.virtual("userName").get(function () {
+  return this.firstName + " " + this.lastName;
+});
 schema.pre("findOneAndUpdate", function () {
   if (this._update.password)
     this._update.password = bcrypt.hashSync(this._update.password, 8);
