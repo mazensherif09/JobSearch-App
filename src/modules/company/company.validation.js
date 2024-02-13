@@ -5,13 +5,10 @@ const addCompanyVal = joi.object({
   description: joi.string().min(2).max(300).required().trim(),
   industry: joi.string().min(2).max(300).required().trim(),
   address: joi.string().min(2).max(300).required().trim(),
-  numberOfEmployees: joi
-    .number()
-    .integer()
-    .min(11)
-    .max(20)
-    .required()
-    .options({ convert: false }),
+  numberOfEmployees: joi.object({
+    max: joi.number(),
+    min: joi.number(),
+  }),
   companyEmail: joi.string().email().required(),
 });
 
